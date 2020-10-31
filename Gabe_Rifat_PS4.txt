@@ -1,4 +1,6 @@
-# Rifat_1
+#Rifat_API
+#I developed two parts, one to know about the sub-breeds of different breeds and other is to explore the photos
+# Rifat_1, exploring the sub-breeds of different breeds
 # Install and import necessary items
 !pip install requests
 import urllib.request, urllib.parse, urllib.error
@@ -15,8 +17,34 @@ name = input('Enter the name of a dog breed: ')
 try:
     dog_breed = dog_data3[name]
     print(dog_breed)
-#You will see all the variations of the dog breed that you entered
+#You will see all the sub-breeds of the dog breed that you entered
 except KeyError:
     print("Error: The breed name is not found!")
     
  #Rifat_2
+ #Here you can explore thousands of photos of different dog breeds!!
+ #First we install and import different items as per our requirement
+ !pip install Pillow
+from PIL import Image
+import requests
+from io import BytesIO
+
+#Now enter any of the breeds that you found available in the API
+name = input('Enter the name of a dog breed: ')
+url = "https://dog.ceo/api/breed/%s/images" % (name)
+response = requests.get(url)
+print(response.status_code)
+data_dog = response.json()
+
+#Print the data to see the list of different images
+data_dog
+
+#In the list you see the different image IDs, just copy and enter! 
+# Copy everything after breeds (example: hound-english/n02089973_3243.jpg)
+image_id = input('Please enter an image id from the list: ')
+url2 = "https://images.dog.ceo/breeds/%s" % (image_id)
+response = requests.get(url2)
+img = Image.open(BytesIO(response.content))
+
+#Now you can see the photo of our favourite canine friend. Enjoy!
+img
