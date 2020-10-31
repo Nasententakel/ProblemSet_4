@@ -1,1 +1,29 @@
+# Rifat_1
+import urllib.request, urllib.parse, urllib.error
+import json
 
+serviceurl = 'https://dog.ceo/api/breeds/list/all'
+
+while True:
+    dog_name = input('Enter a dog name: ')
+    if len(dog_name) < 1: break
+    url = serviceurl + "?" + urllib.parse.urlencode(
+        {'begins_with': dog_name})
+    print('Retrieving', url)
+    uh = urllib.request.urlopen(url)
+    dog_data = uh.read().decode()
+    print('Retrieved', len(dog_data), 'characters')
+    try:
+        js = json.loads(dog_data)
+    except:
+        js = None
+    
+    
+    #Rifat_2
+    !pip install requests
+import urllib.request, urllib.parse, urllib.error
+import json
+import requests
+response = requests.get("https://dog.ceo/api/breeds/list/all")
+print(response.status_code)
+data_dog = response.json()
