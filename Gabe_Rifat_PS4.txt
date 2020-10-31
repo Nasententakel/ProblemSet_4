@@ -24,7 +24,7 @@ except KeyError:
  #Rifat_2
  #Here you can explore thousands of photos of different dog breeds!!
  #First we install and import different items as per our requirement
- !pip install Pillow
+!pip install Pillow
 from PIL import Image
 import requests
 from io import BytesIO
