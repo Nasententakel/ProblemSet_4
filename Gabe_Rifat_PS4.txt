@@ -1,29 +1,22 @@
 # Rifat_1
-import urllib.request, urllib.parse, urllib.error
-import json
-
-serviceurl = 'https://dog.ceo/api/breeds/list/all'
-
-while True:
-    dog_name = input('Enter a dog name: ')
-    if len(dog_name) < 1: break
-    url = serviceurl + "?" + urllib.parse.urlencode(
-        {'begins_with': dog_name})
-    print('Retrieving', url)
-    uh = urllib.request.urlopen(url)
-    dog_data = uh.read().decode()
-    print('Retrieved', len(dog_data), 'characters')
-    try:
-        js = json.loads(dog_data)
-    except:
-        js = None
-    
-    
-    #Rifat_2
-    !pip install requests
+# Install and import necessary items
+!pip install requests
 import urllib.request, urllib.parse, urllib.error
 import json
 import requests
+#collecting data from API
 response = requests.get("https://dog.ceo/api/breeds/list/all")
-print(response.status_code)
-data_dog = response.json()
+#Formatting data
+dog_data2 = response.json()
+#Extract the data to analyze efficiently
+dog_data3 = dog_data2["message"]
+# Now enter any name of a dog breed whatever you like, say hound, bulldog or mastiff
+name = input('Enter the name of a dog breed: ')
+try:
+    dog_breed = dog_data3[name]
+    print(dog_breed)
+#You will see all the variations of the dog breed that you entered
+except KeyError:
+    print("Error: The breed name is not found!")
+    
+ #Rifat_2
